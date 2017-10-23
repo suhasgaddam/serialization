@@ -480,12 +480,12 @@ package json {
         case x => unexpectedValue(x, FastTypeTag.Ref)
       })),
       FastTypeTag.Int.key -> (datum => datum match {
-        case JDouble(num) => num.toInt
-        case x            => unexpectedValue(x, FastTypeTag.Int)
+        case JLong(num) => num.toInt
+        case x          => unexpectedValue(x, FastTypeTag.Int)
       }),
       FastTypeTag.Short.key -> (datum => datum match {
-        case JDouble(num) => num.toShort
-        case x            => unexpectedValue(x, FastTypeTag.Short)
+        case JLong(num) => num.toShort
+        case x          => unexpectedValue(x, FastTypeTag.Short)
       }),
       FastTypeTag.Double.key -> (datum => datum match {
         case JDouble(num) => num
@@ -496,13 +496,13 @@ package json {
         case x            => unexpectedValue(x, FastTypeTag.Float)
       }),
       FastTypeTag.Long.key -> (datum => datum match {
-        case JDouble(num) => num.toLong
-        case JString(s)   => s.toLong
-        case x            => unexpectedValue(x, FastTypeTag.Long)
+        case JLong(num) => num.toLong
+        case JString(s) => s.toLong
+        case x          => unexpectedValue(x, FastTypeTag.Long)
       }),
       FastTypeTag.Byte.key -> (datum => datum match {
-        case JDouble(num) => num.toByte
-        case x            => unexpectedValue(x, FastTypeTag.Byte)
+        case JLong(num) => num.toByte
+        case x          => unexpectedValue(x, FastTypeTag.Byte)
       }),
       FastTypeTag.Boolean.key -> (datum => datum match {
         case JBool(b) => b
@@ -522,16 +522,16 @@ package json {
       FastTypeTag.ArrayByte.key -> (datum => (datum match {
         case JArray(arr) =>
           arr map {
-            case JDouble(num) => num.toByte
-            case x            => unexpectedValue(x, FastTypeTag.Byte)
+            case JLong(num) => num.toByte
+            case x          => unexpectedValue(x, FastTypeTag.Byte)
           }
         case x => unexpectedValue(x, FastTypeTag.ArrayByte)
       }).toArray),
       FastTypeTag.ArrayShort.key -> (datum => (datum match {
         case JArray(arr) =>
           arr map {
-            case JDouble(num) => num.toShort
-            case x            => unexpectedValue(x, FastTypeTag.Short)
+            case JLong(num) => num.toShort
+            case x          => unexpectedValue(x, FastTypeTag.Short)
           }
         case x => unexpectedValue(x, FastTypeTag.ArrayShort)
       }).toArray),
@@ -547,8 +547,8 @@ package json {
         (datum match {
           case JArray(arr) =>
             arr map {
-              case JDouble(num) => num.toInt
-              case x            => unexpectedValue(x, FastTypeTag.Int)
+              case JLong(num) => num.toInt
+              case x          => unexpectedValue(x, FastTypeTag.Int)
             }
           case x => unexpectedValue(x, FastTypeTag.ArrayInt)
         }).toArray
@@ -556,9 +556,9 @@ package json {
       FastTypeTag.ArrayLong.key -> (datum => (datum match {
         case JArray(arr) =>
           arr map {
-            case JDouble(num) => num.toLong
-            case JString(s)   => s.toLong
-            case x            => unexpectedValue(x, FastTypeTag.Long)
+            case JLong(num) => num.toLong
+            case JString(s) => s.toLong
+            case x          => unexpectedValue(x, FastTypeTag.Long)
           }
         case x => unexpectedValue(x, FastTypeTag.ArrayLong)
       }).toArray),
